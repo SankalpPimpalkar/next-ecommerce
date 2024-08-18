@@ -52,7 +52,7 @@ export default function Shoes() {
                         <span>
                             <input id="md" className="hidden peer" type="checkbox" onClick={() => handleShoeSize("MD")} />
                             <label htmlFor="md"
-                                className={`${shoeSize == "MD" && "bg-custom-yellow text-custom-gray-primary"} border border-custom-yellow text-custom-yellow font-semibold py-2 px-4 rounded cursor-pointer`}
+                                className={`${shoeSize == "MD" ? "bg-custom-yellow text-custom-gray-primary" : "border border-custom-yellow text-custom-yellow"}  font-semibold py-2 px-4 rounded cursor-pointer`}
                             >
                                 MD
                             </label>
@@ -60,7 +60,7 @@ export default function Shoes() {
                         <span>
                             <input id="xl" className="hidden peer" type="checkbox" onClick={() => handleShoeSize("XL")} />
                             <label htmlFor="xl"
-                                className={`${shoeSize == "XL" && "bg-custom-yellow text-custom-gray-primary"} border border-custom-yellow text-custom-yellow font-semibold py-2 px-4 rounded cursor-pointer`}
+                                className={`${shoeSize == "XL" ? "bg-custom-yellow text-custom-gray-primary" : "border border-custom-yellow text-custom-yellow"}  font-semibold py-2 px-4 rounded cursor-pointer`}
                             >
                                 XL
                             </label>
@@ -68,7 +68,7 @@ export default function Shoes() {
                         <span>
                             <input id="2xl" className="hidden peer" type="checkbox" onClick={() => handleShoeSize("2XL")} />
                             <label htmlFor="2xl"
-                                className={`${shoeSize == "2XL" && "bg-custom-yellow text-custom-gray-primary"} border border-custom-yellow text-custom-yellow font-semibold py-2 px-4 rounded cursor-pointer`}
+                                className={`${shoeSize == "2XL" ? "bg-custom-yellow text-custom-gray-primary" : "border border-custom-yellow text-custom-yellow"}  font-semibold py-2 px-4 rounded cursor-pointer`}
                             >
                                 2XL
                             </label>
