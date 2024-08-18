@@ -1,5 +1,5 @@
 "use client";
-import { ShoppingCart } from 'lucide-react';
+import { Menu, ShoppingCart } from 'lucide-react';
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -34,23 +34,29 @@ export default function Navbar() {
                 </h1>
             </Link>
 
-            <ul className='gap-7'>
-                {
-                    navLinks.map((nav, index) => (
-                        <li
-                            className={`${pathname === nav.slug && 'text-custom-yellow'}`}
-                            key={index}>
-                            <Link href={nav.slug}>
-                                {nav.name}
-                            </Link>
-                        </li>
-                    ))
-                }
+            <div className='flex items-center gap-7'>
+                <ul className='gap-7 hidden sm:flex'>
+                    {
+                        navLinks.map((nav, index) => (
+                            <li
+                                className={`${pathname === nav.slug && 'text-custom-yellow'}`}
+                                key={index}>
+                                <Link href={nav.slug}>
+                                    {nav.name}
+                                </Link>
+                            </li>
+                        ))
+                    }
+                </ul>
+
+                <button className='block sm:hidden'>
+                    <Menu />
+                </button>
 
                 <Link href="/cart">
                     <ShoppingCart />
                 </Link>
-            </ul>
+            </div>
         </div>
     )
 }

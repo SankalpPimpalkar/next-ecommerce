@@ -25,5 +25,5 @@ h3 {
 }
 
 ul {
-    @apply flex items-center
+    @apply items-start
 }
