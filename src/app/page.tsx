@@ -4,7 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import Banner from "@/components/Banner";
 import Product from "@/components/Product";
-
+import Shoes from "@/components/Shoes";
 
 export default function Home() {
 
@@ -13,8 +13,6 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const resp = await axios.get('https://api.escuelajs.co/api/v1/products?offset=0&limit=10')
-
-      console.log(resp)
 
       if (resp.data) {
         setProducts(resp.data)
@@ -27,7 +25,7 @@ export default function Home() {
 
       <Banner />
 
-      <div className="mt-6 max-w-5xl mx-auto">
+      <div className="mt-10 max-w-5xl mx-auto">
         <h1>
           Products
         </h1>
@@ -40,11 +38,18 @@ export default function Home() {
           }
         </ul>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-6">
           <Link href='/category' className="border py-2 px-3 border-custom-yellow text-custom-yellow hover:bg-custom-yellow hover:text-custom-gray-primary transition-all duration-300">
             Explore More
           </Link>
         </div>
+      </div>
+
+      <div className="mt-10 max-w-5xl mx-auto">
+        <h1>
+          Shop branded Shoes
+        </h1>
+        <Shoes />
       </div>
     </div>
   );
