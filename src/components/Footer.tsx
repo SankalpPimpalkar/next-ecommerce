@@ -25,7 +25,7 @@ export default function Footer() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/categories/1" className='hover:text-custom-yellow'>
+                            <Link href="/categories/2" className='hover:text-custom-yellow'>
                                 Electronics
                             </Link>
                         </li>

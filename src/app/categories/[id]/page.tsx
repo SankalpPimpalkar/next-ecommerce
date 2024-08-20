@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function CategoryProducts({ params }: any) {
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState<any>([])
 
     useEffect(() => {
         (async () => {
@@ -22,7 +22,7 @@ export default function CategoryProducts({ params }: any) {
     return (
         <div className='p-5'>
             <h1>
-                All Categories
+                {products && products[0]?.category?.name}
             </h1>
 
             <ul className="flex flex-wrap mt-6 gap-7">
