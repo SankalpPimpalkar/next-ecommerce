@@ -6,19 +6,19 @@ import { usePathname } from 'next/navigation'
 const navLinks = [
     {
         name: 'All Categories',
-        slug: '/category'
+        slug: '/categories'
     },
     {
         name: 'Electronics',
-        slug: '/category/electronics'
+        slug: '/categories/2'
     },
     {
         name: 'Clothes',
-        slug: '/category/clothes'
+        slug: '/categories/1'
     },
     {
-        name: 'Furniture',
-        slug: '/category/furniture'
+        name: 'Miscellaneous',
+        slug: '/categories/5'
     },
 ]
 
