@@ -18,8 +18,6 @@ export default function Shoes() {
         (async () => {
             const resp = await axios.get('https://api.escuelajs.co/api/v1/products/?title=Shoes')
 
-            console.log(resp.data[0].images)
-
             if (resp.data) {
                 setProductShoes(resp.data[0])
             }
