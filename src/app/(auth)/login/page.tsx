@@ -3,12 +3,9 @@ import Link from 'next/link';
 import React, { FormEvent, useState } from 'react';
 import { loginUser } from '@/appwrite/functions/users';
 import { useRouter } from "next/navigation";
-import config from '@/appwrite/config';
-
 
 export default function Login() {
 
-    console.log(config)
     const [formData, setformData] = useState({
         email: "",
         password: ""
