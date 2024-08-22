@@ -51,7 +51,7 @@ export default function Navbar() {
             </Link>
 
             <div className='flex items-center gap-7'>
-                <ul className='gap-7 hidden sm:flex'>
+                <ul className='gap-7 hidden md:flex'>
                     {
                         navLinks.map((nav, index) => (
                             <li
@@ -66,19 +66,30 @@ export default function Navbar() {
                 </ul>
 
                 <Link href="/cart">
-                    <ShoppingCart className='text-custom-yellow' />
+                    <ShoppingCart
+                        width={25}
+                        height={25}
+                        className='text-custom-yellow' />
                 </Link>
 
                 {
-                    user && (
+                    user ? (
                         <CircleUser
+                            width={25}
+                            height={25}
                             onClick={() => router.push('/profile')}
                             className='text-custom-yellow'
                         />
+                    ) : (
+                        <Link
+                            className='hidden sm:block bg-custom-yellow text-custom-gray-primary px-4 py-2 text-sm rounded font-semibold active:bg-custom-yellow/95'
+                            href='/login'>
+                            Login
+                        </Link>
                     )
                 }
 
-                <button className='block sm:hidden' onClick={toggleSidebar}>
+                <button className='block md:hidden' onClick={toggleSidebar}>
                     {isSidebarOpen ? <X /> : <Menu />}
                 </button>
             </div>
@@ -90,19 +101,31 @@ export default function Navbar() {
                     <button onClick={toggleSidebar}>
                         <X />
                     </button>
-                    <ul className='mt-10'>
-                        {navLinks.map((nav, index) => (
-                            <li
-                                className={`${pathname === nav.slug ? 'text-custom-yellow' : ''} mb-5`}
-                                key={index}
-                                onClick={toggleSidebar}
-                            >
-                                <Link href={nav.slug}>
-                                    {nav.name}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className='mt-10 flex flex-col h-full items-start justify-between'>
+                        <ul>
+                            {navLinks.map((nav, index) => (
+                                <li
+                                    className={`${pathname === nav.slug ? 'text-custom-yellow' : ''} mb-5`}
+                                    key={index}
+                                    onClick={toggleSidebar}
+                                >
+                                    <Link href={nav.slug}>
+                                        {nav.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {
+                            !user && (
+
+                                <button className='bg-custom-yellow text-custom-gray-primary w-full py-2 rounded font-semibold'>
+                                    Login
+                                </button>
+                            )
+                        }
+
+                    </div>
                 </div>
             </div>
         </nav>
