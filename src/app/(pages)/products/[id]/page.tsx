@@ -26,7 +26,7 @@ export default function Product({ params }: any) {
     }, [])
 
     return (
-        <div className="mt-6 flex flex-col md:flex-row gap-6 items-start">
+        <div className="mt-6 p-5 md:p-0 flex flex-col md:flex-row gap-6 items-start">
             <img
                 className="w-full md:max-w-sm rounded-lg"
                 src={product?.images[0]}
