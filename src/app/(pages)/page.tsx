@@ -39,7 +39,7 @@ export default function Home() {
         </ul>
 
         <div className="flex justify-center mt-6">
-          <Link href='/category' className="border py-2 px-3 border-custom-yellow text-custom-yellow hover:bg-custom-yellow hover:text-custom-gray-primary transition-all duration-300">
+          <Link href='/categories' className="border py-2 px-3 border-custom-yellow text-custom-yellow hover:bg-custom-yellow hover:text-custom-gray-primary transition-all duration-300">
             Explore More
           </Link>
         </div>
