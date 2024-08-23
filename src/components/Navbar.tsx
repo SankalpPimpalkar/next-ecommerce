@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { CircleUser, Menu, ShoppingCart, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { getCurrentUser } from '@/appwrite/functions/users';
+import { getCurrentUser, logout } from '@/appwrite/functions/users';
 
 const navLinks = [
     {
@@ -34,11 +34,15 @@ export default function Navbar() {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    const handleLogout = async () => {
+        await logout()
+        setuser(null)
+    }
+
     useEffect(() => {
         (async () => {
             const userData = await getCurrentUser()
             setuser(userData)
-            console.log(userData)
         })();
     }, [])
 
@@ -117,11 +121,15 @@ export default function Navbar() {
                         </ul>
 
                         {
-                            !user && (
-
-                                <button className='bg-custom-yellow text-custom-gray-primary w-full py-2 rounded font-semibold'>
-                                    Login
+                            user ? (
+                                <button className='bg-custom-yellow text-custom-gray-primary w-full py-2 rounded font-semibold' onClick={handleLogout}>
+                                    Logout
                                 </button>
+                            ) : (
+
+                                <Link href='/login' className='bg-custom-yellow text-custom-gray-primary w-full py-2 rounded font-semibold text-center'>
+                                    Login
+                                </Link>
                             )
                         }
 
