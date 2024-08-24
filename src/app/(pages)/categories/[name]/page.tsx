@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState } from 'react'
-import Product from '@/components/Product'
-import axios from 'axios'
-import { GetAllProducts } from '@/appwrite/functions/products';
-import ProductSkeleton from '@/components/ProductSkeleton';
 
-export default function AllCategories() {
+import { GetProductsByCategoryName } from "@/appwrite/functions/products";
+import Product from "@/components/Product";
+import ProductSkeleton from "@/components/ProductSkeleton";
+import { useEffect, useState } from "react";
+
+export default function CategoryProducts({ params }: any) {
 
     const [products, setProducts] = useState<any>([])
     const [isloading, setIsloading] = useState(false)
@@ -14,7 +14,7 @@ export default function AllCategories() {
         (async () => {
             try {
                 setIsloading(true)
-                const resp = await GetAllProducts()
+                const resp = await GetProductsByCategoryName(params.name)
 
                 if (resp) {
                     setProducts(resp)
@@ -28,13 +28,13 @@ export default function AllCategories() {
     return (
         <div className='p-5'>
             <h1>
-                All Categories
+                {params.name}
             </h1>
 
             <ul className="flex flex-wrap mt-6 gap-7">
                 {
                     products?.map((product: any) => (
-                        <Product key={product.$id} product={product} />
+                        <Product key={product.id} product={product} />
                     ))
                 }
             </ul>
@@ -46,8 +46,15 @@ export default function AllCategories() {
                         <ProductSkeleton />
                         <ProductSkeleton />
                         <ProductSkeleton />
-                        <ProductSkeleton />
                     </ul>
+                )
+            }
+
+            {
+                (products.length == 0 && !isloading) && (
+                    <h4 className="text-custom-yellow">
+                        No products of {params.name} found
+                    </h4>
                 )
             }
         </div>

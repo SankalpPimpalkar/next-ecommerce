@@ -12,15 +12,15 @@ const navLinks = [
     },
     {
         name: 'Electronics',
-        slug: '/categories/2'
+        slug: '/categories/Electronics'
     },
     {
         name: 'Clothes',
-        slug: '/categories/1'
+        slug: '/categories/Clothes'
     },
     {
         name: 'Miscellaneous',
-        slug: '/categories/5'
+        slug: '/categories/Miscellaneous'
     },
 ];
 

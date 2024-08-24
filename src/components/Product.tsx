@@ -5,10 +5,10 @@ export default function Product(
     { product }: any
 ) {
     return (
-        <Link href={`/products/${product.id}`} className="w-full sm:max-w-44 md:max-w-52 lg:max-w-56">
+        <Link href={`/products/${product.$id}`} className="w-full sm:max-w-44 md:max-w-52 lg:max-w-56">
             <img
                 className="w-full h-full object-contain rounded"
-                src={product.images[0] || product.images[1] || product.images[2]} alt={product.title}
+                src={product.image} alt={product.title}
             />
 
             <h2 className="mt-4 text-custom-yellow">

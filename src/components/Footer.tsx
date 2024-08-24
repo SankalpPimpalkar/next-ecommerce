@@ -25,13 +25,13 @@ export default function Footer() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/categories/2" className='hover:text-custom-yellow'>
-                                Electronics
+                            <Link href="/add-product" className='hover:text-custom-yellow'>
+                                Add your product
                             </Link>
                         </li>
                         <li>
-                            <Link href="/categories/5" className='hover:text-custom-yellow'>
-                                Miscellaneous
+                            <Link href="/cart" className='hover:text-custom-yellow'>
+                                My Cart
                             </Link>
                         </li>
                     </ul>

@@ -52,9 +52,8 @@ export default function AddProduct() {
 
     useEffect(() => {
         (async () => {
-            const categoryList = await GetCategories()
+            const categoryList = await GetCategories();
             setCategories(categoryList)
-            console.log(categoryList)
         })()
     }, [])
 
@@ -100,9 +99,9 @@ export default function AddProduct() {
                 <div className="flex flex-wrap gap-2">
                     {
                         categories?.map((category: any) => (
-                            <div key={category.$id} className="flex gap-2">
+                            <div key={category.$id} className="flex gap-2 ">
                                 <label
-                                    className={`px-3 py-2 border rounded-md font-medium ${category.name === formData.category ? "bg-custom-yellow cursor-pointer text-custom-gray-primary border-custom-yellow" : "bg-transparent text-custom-yellow border-custom-yellow"}`}
+                                    className={`px-3 py-2 border rounded-md font-medium cursor-pointer ${category.name === formData.category ? "bg-custom-yellow text-custom-gray-primary border-custom-yellow" : "bg-transparent text-custom-yellow border-custom-yellow"}`}
                                     htmlFor={category.name}>
                                     {category.name}
                                 </label>

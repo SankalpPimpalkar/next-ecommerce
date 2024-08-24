@@ -81,5 +81,3 @@ export async function logout() {
         throw error.message
     }
 }
-
-// Todo - Make update user Details feature

@@ -1,21 +1,29 @@
 "use client";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Link from "next/link";
 import Banner from "@/components/Banner";
 import Product from "@/components/Product";
 import Shoes from "@/components/Shoes";
+import { GetAllProducts } from "@/appwrite/functions/products";
+import ProductSkeleton from "@/components/ProductSkeleton";
 
 export default function Home() {
 
   const [products, setProducts] = useState<any>([])
+  const [isloading, setIsloading] = useState(false)
 
   useEffect(() => {
     (async () => {
-      const resp = await axios.get('https://api.escuelajs.co/api/v1/products?offset=0&limit=10')
+      try {
+        setIsloading(true)
+        const resp = await GetAllProducts(10)
 
-      if (resp.data) {
-        setProducts(resp.data)
+        if (resp) {
+          setProducts(resp)
+          console.log(resp)
+        }
+      } finally {
+        setIsloading(false)
       }
     })();
   }, [])
@@ -32,11 +40,22 @@ export default function Home() {
 
         <ul className="flex flex-wrap mt-6 gap-7">
           {
-            products?.slice(1).map((product: any) => (
-              <Product key={product.id} product={product} />
+            products?.map((product: any) => (
+              <Product key={product.$id} product={product} />
             ))
           }
         </ul>
+
+        {
+          isloading && (
+            <ul className="flex flex-wrap mt-6 gap-10">
+              <ProductSkeleton />
+              <ProductSkeleton />
+              <ProductSkeleton />
+              <ProductSkeleton />
+            </ul>
+          )
+        }
 
         <div className="flex justify-center mt-6">
           <Link href='/categories' className="border py-2 px-3 border-custom-yellow text-custom-yellow hover:bg-custom-yellow hover:text-custom-gray-primary transition-all duration-300">

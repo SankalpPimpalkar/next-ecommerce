@@ -1,11 +1,10 @@
 "use client";
-import axios from 'axios'
+import { GetProductById } from '@/appwrite/functions/products';
 import { useEffect, useState } from 'react'
 
 export default function Product({ params }: any) {
     const [size, setSize] = useState("MD")
     const [product, setProduct] = useState<any>(null)
-
 
     function handleShoeSize(Productsize: string) {
         if (size !== Productsize) {
@@ -17,10 +16,10 @@ export default function Product({ params }: any) {
 
     useEffect(() => {
         (async () => {
-            const resp = await axios.get(`https://api.escuelajs.co/api/v1/products/${params.id}`)
+            const resp = await GetProductById(params.id)
 
-            if (resp.data) {
-                setProduct(resp.data)
+            if (resp) {
+                setProduct(resp)
             }
         })();
     }, [])
@@ -29,7 +28,7 @@ export default function Product({ params }: any) {
         <div className="mt-6 p-5 md:p-0 flex flex-col md:flex-row gap-6 items-start">
             <img
                 className="w-full md:max-w-sm rounded-lg"
-                src={product?.images[0]}
+                src={product?.image}
                 alt={product?.title}
             />
 
@@ -47,7 +46,7 @@ export default function Product({ params }: any) {
                 </h3>
                 <div className="flex flex-col gap-6 mt-5 items-start">
                     {
-                        product?.category?.name == "Clothes" || product?.category?.name == "Shoes" && (
+                        product?.category == "Clothes" || product?.category == "Shoes" && (
                             <div className="flex items-center gap-2">
                                 <span>
                                     <input id="md" className="hidden peer" type="checkbox" onClick={() => handleShoeSize("MD")} />

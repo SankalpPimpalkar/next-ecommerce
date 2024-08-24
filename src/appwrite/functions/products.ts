@@ -1,4 +1,4 @@
-import { ID } from "appwrite";
+import { ID, Query } from "appwrite";
 import config from "../config";
 import { database, storage } from "../config";
 
@@ -21,7 +21,10 @@ export async function AddProductInDB(formData: AddProductForm) {
             image
         )
 
-        console.log(uploadedImage)
+        const imagePreview = storage.getFileView(
+            config.storageId,
+            uploadedImage.$id
+        )
 
         const product = await database.createDocument(
             config.databaseId,
@@ -32,10 +35,9 @@ export async function AddProductInDB(formData: AddProductForm) {
                 price,
                 description,
                 category,
-                imageId: uploadedImage.$id
+                image: imagePreview
             }
         )
-        console.log(product)
 
         return product
 
@@ -44,3 +46,53 @@ export async function AddProductInDB(formData: AddProductForm) {
         throw error.message
     }
 }
+
+export async function GetAllProducts(limit?: number) {
+    try {
+        const resp = await database.listDocuments(
+            config.databaseId,
+            config.productsCollectionId
+        )
+
+        return resp.documents
+
+    } catch (error: any) {
+        console.log(error.message)
+        return [];
+    }
+}
+
+export async function GetProductById(productId: string) {
+    try {
+
+        return await database.getDocument(
+            config.databaseId,
+            config.productsCollectionId,
+            productId
+        )
+
+    } catch (error: any) {
+        console.log(error.message)
+        throw error.message
+    }
+}
+
+export async function GetProductsByCategoryName(categoryName: string) {
+    try {
+
+        const resp =  await database.listDocuments(
+            config.databaseId,
+            config.productsCollectionId,
+            [
+                Query.equal('category', categoryName)
+            ]
+        )
+
+        return resp.documents
+
+    } catch (error: any) {
+        console.log(error.message)
+        throw error.message
+    }
+}
+
