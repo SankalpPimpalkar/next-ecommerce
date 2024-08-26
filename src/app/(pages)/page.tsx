@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Banner from "@/components/Banner";
 import Product from "@/components/Product";
-import Shoes from "@/components/Shoes";
 import { GetAllProducts } from "@/appwrite/functions/products";
 import ProductSkeleton from "@/components/ProductSkeleton";
+import ProductDetails from "@/components/ProductDetails";
 
 export default function Home() {
 
@@ -68,7 +68,16 @@ export default function Home() {
         <h1>
           Shop branded Shoes
         </h1>
-        <Shoes />
+        {
+          products.map((product: any) => {
+            if (product.category == 'Shoes') {
+
+              return (
+                <ProductDetails key={product.$id} product={product} className={"px-0"} />
+              )
+            }
+          })
+        }
       </div>
     </div>
   );
